@@ -1,0 +1,96 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+#wrapper {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	position: relative;
+}
+
+#main {
+	position: absolute;
+ 	left: 50%;
+ 	top: 50%;
+ 	transform: translate(-50%, -50%);
+ 	margin: 0;
+	color: white;
+	width: 15%;
+}
+
+#search {
+	width: 100%;
+	outline: none;
+}
+
+.mode {
+	width: 25%;
+	height: 100%;
+	margin: auto;
+	text-align: center;
+	float: left;
+}
+
+#web {
+	background: #C94B7E;
+	background: -webkit-linear-gradient(top left, #C94B7E, #BC8D93);
+	background: -moz-linear-gradient(top left, #C94B7E, #BC8D93);
+	background: linear-gradient(to bottom right, #C94B7E, #BC8D93);
+	color: #A13B64;
+}
+
+#music {
+	background: #A64BC9;
+	background: -webkit-linear-gradient(top left, #A64BC9, #B78EBD);
+	background: -moz-linear-gradient(top left, #A64BC9, #B78EBD);
+	background: linear-gradient(to bottom right, #A64BC9, #B78EBD);
+	color: #793794;
+}
+
+#video {
+	background: #4B7FC9;
+	background: -webkit-linear-gradient(top left, #4B7FC9, #8EA0BD);
+	background: -moz-linear-gradient(top left, #4B7FC9, #8EA0BD);
+	background: linear-gradient(to bottom right, #4B7FC9, #8EA0BD);
+	color: #335687;
+}
+
+#movie {
+	background: #4BC9AD;
+	background: -webkit-linear-gradient(top left, #4BC9AD, #8EBDB8);
+	background: -moz-linear-gradient(top left, #4BC9AD, #8EBDB8);
+	background: linear-gradient(to bottom right, #4BC9AD, #8EBDB8);
+	color: #2E7D6C;
+}
+
+.mode_title {
+    	float: none;
+	margin-top: 20%;
+	font-family: 'Bebas Neue', cursive;
+	font-size: 40px;
+}
+
+.mode:hover {
+	text-decoration: underline;
+}
+
+#web_title {
+	color: #A13B64;
+}
+
+#music_title {
+	color: #793794;
+}
+
+#video_title {
+	color: #335687;
+}
+
+#movie_title {
+	color: #2E7D6C;
+}
+/**/

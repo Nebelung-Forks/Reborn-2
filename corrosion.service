@@ -1,0 +1,16 @@
+[Unit]
+Description=Corrosion Web Proxy
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Restart=on-failure
+RestartSec=5s
+WorkingDirectory={{installPath}}/corrosion/demo
+ExecStart={{nodeBin}} {{installPath}}/corrosion/demo/index.js
+
+[Install]
+WantedBy=multi-user.target

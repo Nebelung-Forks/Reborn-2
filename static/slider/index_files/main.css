@@ -1,0 +1,294 @@
+@media (max-width: 767px) {
+	.equal{
+	  display: none;
+	}
+
+	#logo{
+		width: 405px;
+	}
+
+	#hat {
+		height: 43px;
+		width: 31px;
+		left: 29px;
+		top: 39px;
+	}
+	
+	#buttonSearch{
+		margin: -40px 30px 30px 170px
+	}
+	
+	.track{
+		height: 55px;
+	}
+
+	.controlPanel{
+		margin: 17px 5px 0 auto;
+	}
+	.num{
+		top: 18px;
+	}
+	#newyear{
+		width: 40px;
+		left: 24px;
+		top: 37px;
+	}
+  }
+
+  @media only screen and (min-width:768px){
+
+	#hat {
+		height: 58px;
+		width: 42px;
+		left: 35px;
+		top: 42px;
+	}
+
+	#buttonSearch{
+		margin: -32px 30px 40px 170px;
+	}
+
+	.track{
+		height: 32px;
+	}
+
+	.controlPanel{
+		margin: 8px 5px 0 auto;
+	}
+	.num{
+		top: 8px;
+	}
+	#newyear{
+		width: 45px;
+		left: 36px;
+		top: 44px; 
+	}
+  }
+
+body{
+	margin : 0;
+	height : 100%;
+	color:#DDD;
+	font-family: -apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif; 
+	font-size: 12px;
+}
+
+.mainBackground{
+	position : fixed;
+	height : 100%;
+	width : 100%;
+	background-color : #000;
+	top : 0;
+	left : 0;
+	
+	background: url(/media/images/b2.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;	
+	z-index : -1;
+}
+
+img {
+	filter: grayscale(0.8);
+	
+	-webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+img:hover {
+    filter: grayscale(0);
+}
+
+.mainBackground canvas{
+	position : relative;
+}
+
+DIV.mainHeader{
+	margin: 0 auto;
+	max-width: 1050px;
+	min-width: 550px;
+}
+
+DIV.mainLine{
+	box-shadow: 0 0 20px black;
+	position: fixed;
+	background: none repeat scroll 0 0 rgba(10, 10, 10, 0.8);
+	width: 100%;
+	height: 32px;
+	z-index: 5;
+}
+
+DIV#mainLogo{
+	position: relative;
+	margin: 0 auto;
+	padding-top: 23px;
+	
+}
+
+DIV#buttonSearch{
+	position: relative;
+	display: block;
+	max-width: 670px;
+}
+
+A{
+	border: none;
+	outline:none;
+	color: #DDD;
+	text-decoration: none;
+}
+
+DIV#liveaudio{
+	display: none;
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+	margin: 0 15px;
+	padding: 10px;
+	border: 1px solid #DDD;
+}
+
+INPUT.buttonQuery {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 2px;
+	font-size: 17px;
+	border: 1px solid #DDD;
+	background: #0E0E0E;
+	color: #DDD;
+	height: 32px;
+}
+
+#searchButton {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 32px;
+	width: 40px;
+	border: 0;
+	z-index: 2;
+	background: transparent url('/media/images/search.gif') no-repeat top right;
+	text-indent: -1000em;
+	cursor: pointer;
+	display: block;
+	outline: none;
+}
+
+.equal {
+	background: url("/media/images/eq.png") 0 0 no-repeat;
+	height: 141px;
+	width: 218px;
+	right: -21px;
+	top: -77px;
+	position: absolute;
+	z-index: -1;
+}
+
+/*Track form*/
+.num {
+	float: left;
+	position: relative;
+	margin-left: 3px;
+	text-align: right;
+	width: 20px;
+}
+
+.track{
+	display: flex;
+	margin-left: 32px;
+}
+
+.track.stripe-even{
+	background: rgba(66, 61, 44, 0.27) none repeat scroll 0 0;
+	list-style-type:none;
+}
+.track.stripe-odd{
+	list-style-type:none;
+}
+.track:hover {
+	background: rgba(95, 87, 60, 0.7) none repeat scroll 0 0;
+}
+
+/*controlPanel*/
+
+.controlPanel{
+	float: right;
+	position: relative;
+	text-align: justify;
+}
+
+.trackTime{
+	cursor: pointer;
+	float: right;
+	text-align: center;
+	width: 45px;
+	font-weight: bold;
+}
+
+.trackTime:hover{
+	color: #2ca5e0;
+}
+
+.trackDownload{
+	cursor: pointer;
+	position: relative;
+	float: right;
+	right: 5px;
+}
+
+#informer{
+	display: none;
+	border: 1px solid rgb(204, 204, 204);
+	padding: 8px;
+	background: rgb(28, 28, 28) none repeat scroll 0% 0%;
+	margin: 0px auto;
+	position: fixed;
+	z-index: 777;
+	top: 30px;
+	right: 1%;
+}
+
+#r_bash {
+	background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0;
+	border-radius: 8px 0 0;
+	bottom: 0;
+	box-shadow: 0 0 20px black;
+	color: #000;
+	position: fixed;
+	right: 0;
+	z-index: 5;
+	padding: 7px;
+}
+
+#footer{
+	margin-top: 40px;
+}
+
+#setVol{
+	width: 149px;
+	margin: 11px 20px;
+	position: relative;
+	float: right;
+}
+
+#fullwrapper {
+	position:fixed;
+	z-index:100;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	background-color:rgba(0,0,0,0.8);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	display:none;
+}
+
+#hat {
+	position: absolute;
+	z-index: 10;
+	cursor: pointer;
+}
