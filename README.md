@@ -18,7 +18,7 @@ A frontend design for the [Corrosion web proxy](https://github.com/titaniumnetwo
 
 ## Installation 
 
-- Either grab the release binary, or compile for yourself with `go build`.
+- Either grab the [release binary](https://github.com/elitwo/reborn/releases), or compile for yourself with `go build`.
 - `./reborn --install`
 - If you get dependency errors, resolve them by installing the above software.
     - If you still get dependency errors after installing everything, point the reborn installer to the proper paths (see all options by running `./reborn --help`).
