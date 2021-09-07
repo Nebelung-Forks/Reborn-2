@@ -50,9 +50,9 @@ function getUrl(str) {
 const searchFunctions = {
     'WEB': q => {
         if (q.includes("http://") || q.includes("https://")) {
-			var redir = window.protocol + '://serve.' + window.location.host + '/fetch/' + getUrl(q);
+			var redir = window.protocol + '://' + window.location.host + '/fetch/' + getUrl(q);
 		} else {
-			var redir = window.protocol + '://serve.' + window.location.host + '/fetch/' + getUrl('https://metager.org/meta/meta.ger3?eingabe=' + q);
+			var redir = window.protocol + '://' + window.location.host + '/fetch/' + getUrl('https://gg.fm/search?q=' + q);
 		}
 
         window.open(redir);
@@ -62,11 +62,11 @@ const searchFunctions = {
 		window.open(redir);
     },
     'VIDEO': q=> {
-        var redir = window.protocol + '://serve.' + window.location.host + '/fetch/' + getUrl('https://yewtu.be/search?q=' + q);
+        var redir = window.protocol + '://' + window.location.host + '/fetch/' + getUrl('https://www.youtube.com/results?search_query=' + q);
         window.open(redir);
     },
     'MOVIE': q=> {
-        var redir = window.protocol + '://serve.' + window.location.host + '/fetch/' + getUrl('https://lookmovie.io/movies/search/?q=' + q);
+        var redir = window.protocol + '://' + window.location.host + '/fetch/' + getUrl('https://lookmovie.io/movies/search/?q=' + q);
         window.open(redir);
     }
 }

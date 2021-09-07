@@ -147,14 +147,12 @@ func AddDomains(installPath string, rebornPort string, corrosionPort string, ngi
 
 		args = append(args, "-d")
 		args = append(args, domain)
-		args = append(args, "-d")
-		args = append(args, "serve."+domain)
 	}
 
 	log.Println("[*] Obtaining SSL certificates.")
 
 	cb, err := exec.Command(certbotBin, args...).Output()
-	HandleErr(err, "Unable to run certbot.\n\n"+string(cb))
+	HandleErr(err, "Unable to run certbot.\n\n"+string(cb)+"\n\nYou might want to manually run\n"+certbotBin+" "+strings.Join(args, " "))
 }
 
 func Install(nodeBin string, npmBin string, certbotBin string, nginxBin string, gitBin string, pythonBin string, pipBin string, nginxSiteConfig string, installPath string, corrosionRepo string, rebornPort string, corrosionPort string) {
@@ -227,7 +225,7 @@ func Install(nodeBin string, npmBin string, certbotBin string, nginxBin string, 
 
 	log.Println("[*] Writing nginx config")
 
-	err = ioutil.WriteFile(nginxSiteConfig, []byte("# Reborn auto-install config\n\n"), 0755)
+	err = ioutil.WriteFile(nginxSiteConfig, []byte("# Reborn auto-install config\n\n\nmap $http_user_agent $pp {\ndefault https://127.0.0.1:9771; # corrosion  \n~lightspeedSystemsCrawler http://127.0.0.1:9339;\n}"), 0755)
 	HandleErr(err, "Unable to create the nginx site config. Are you running with permissions?")
 
 	AddDomains(installPath, rebornPort, corrosionPort, nginxSiteConfig, certbotBin)
