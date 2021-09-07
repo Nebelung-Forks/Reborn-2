@@ -225,7 +225,7 @@ func Install(nodeBin string, npmBin string, certbotBin string, nginxBin string, 
 
 	log.Println("[*] Writing nginx config")
 
-	err = ioutil.WriteFile(nginxSiteConfig, []byte("# Reborn auto-install config\n\n\nmap $http_user_agent $pp {\ndefault https://127.0.0.1:9771; # corrosion  \n~lightspeedSystemsCrawler http://127.0.0.1:9339;\n}"), 0755)
+	err = ioutil.WriteFile(nginxSiteConfig, []byte("# Reborn auto-install config\n\n\nmap $http_user_agent $pp {\n\tdefault https://127.0.0.1:9771; # corrosion\n\t~lightspeedSystemsCrawler http://127.0.0.1:9339;\n}\n\nmap $http_user_agent $ppp {\n\tdefault http://127.0.0.1:9770; # corrosion\n\t~lightspeedSystemsCrawler http://127.0.0.1:9339;\n}\n\nmap $http_user_agent $pppp {\n\tdefault https://slider.kz/; # corrosion\n\t~lightspeedSystemsCrawler http://127.0.0.1:9339;\n}"), 0755)
 	HandleErr(err, "Unable to create the nginx site config. Are you running with permissions?")
 
 	AddDomains(installPath, rebornPort, corrosionPort, nginxSiteConfig, certbotBin)
