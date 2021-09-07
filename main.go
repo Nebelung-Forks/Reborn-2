@@ -15,6 +15,9 @@ var (
 	//go:embed corrosion.service
 	corrosionService string
 
+	//go:embed edufau.service
+	edufauService string
+
 	//go:embed static
 	html embed.FS
 )
@@ -34,15 +37,17 @@ func main() {
 
 	var installPath = flag.String("installPath", "/usr/local/reborn", "Reborn installation path")
 	var corrosionRepo = flag.String("corrosion", "https://github.com/titaniumnetwork-dev/Corrosion", "Corrosion repo")
+	var edufauRepo = flag.String("edufauRepo", "https://github.com/elitwo/edufau", "Edufau repo")
 	var nginxSiteConfig = flag.String("nginxSiteConfig", "/etc/nginx/sites-enabled/reborn-auto", "Nginx site config path")
 
 	var rebornPort = flag.String("rebornPort", "9770", "Reborn Static Port")
 	var corrosionPort = flag.String("corrosionPort", "9771", "Corrosion Port")
+	var edufauPort = flag.String("edufauPort", "9772", "Edufau Port")
 
 	flag.Parse()
 
 	if *install {
-		Install(*nodeBin, *npmBin, *certbotBin, *nginxBin, *gitBin, *pythonBin, *pipBin, *nginxSiteConfig, *installPath, *corrosionRepo, *rebornPort, *corrosionPort)
+		Install(*nodeBin, *npmBin, *certbotBin, *nginxBin, *gitBin, *pythonBin, *pipBin, *nginxSiteConfig, *installPath, *corrosionRepo, *edufauRepo, *rebornPort, *corrosionPort, *edufauPort)
 		return
 	}
 

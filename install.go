@@ -155,7 +155,7 @@ func AddDomains(installPath string, rebornPort string, corrosionPort string, ngi
 	HandleErr(err, "Unable to run certbot.\n\n"+string(cb)+"\n\nYou might want to manually run\n"+certbotBin+" "+strings.Join(args, " "))
 }
 
-func Install(nodeBin string, npmBin string, certbotBin string, nginxBin string, gitBin string, pythonBin string, pipBin string, nginxSiteConfig string, installPath string, corrosionRepo string, rebornPort string, corrosionPort string) {
+func Install(nodeBin string, npmBin string, certbotBin string, nginxBin string, gitBin string, pythonBin string, pipBin string, nginxSiteConfig string, installPath string, corrosionRepo string, edufauRepo string, rebornPort string, corrosionPort string, edufauPort string) {
 	if checkBin(nodeBin) {
 		panic("Requires: nodejs. Either install nodejs or specify its path with --node")
 	}
@@ -223,9 +223,14 @@ func Install(nodeBin string, npmBin string, certbotBin string, nginxBin string, 
 	err = replaceCorrosion(corrosionPort, installPath+"/corrosion/demo/index.js")
 	HandleErr(err, "Unable to edit corrosion config.")
 
+	log.Println("[*] Cloning " + edufauRepo)
+
+	err = gitClone(edufauRepo, installPath+"/edufau", gitBin)
+	HandleErr(err, "Unable to clone Edufau repo to "+installPath+"/edufau. Are you running with permissions?")
+
 	log.Println("[*] Writing nginx config")
 
-	err = ioutil.WriteFile(nginxSiteConfig, []byte("# Reborn auto-install config\n\n\nmap $http_user_agent $pp {\n\tdefault https://127.0.0.1:9771; # corrosion\n\t~lightspeedSystemsCrawler http://127.0.0.1:9339;\n}\n\nmap $http_user_agent $ppp {\n\tdefault http://127.0.0.1:9770; # corrosion\n\t~lightspeedSystemsCrawler http://127.0.0.1:9339;\n}\n\nmap $http_user_agent $pppp {\n\tdefault https://slider.kz/; # corrosion\n\t~lightspeedSystemsCrawler http://127.0.0.1:9339;\n}"), 0755)
+	err = ioutil.WriteFile(nginxSiteConfig, []byte("# Reborn auto-install config\n\nmap $http_user_agent $pp {\n\tdefault https://127.0.0.1:"+corrosionPort+"; # corrosion\n\t~lightspeedSystemsCrawler http://127.0.0.1:"+edufauPort+";\n}\n\nmap $http_user_agent $ppp {\n\tdefault http://127.0.0.1:"+rebornPort+"; # reborn\n\t~lightspeedSystemsCrawler http://127.0.0.1:"+edufauPort+";\n}\n\nmap $http_user_agent $pppp {\n\tdefault https://slider.kz/; # slider\n\t~lightspeedSystemsCrawler http://127.0.0.1:"+edufauPort+";\n}\n\n"), 0755)
 	HandleErr(err, "Unable to create the nginx site config. Are you running with permissions?")
 
 	AddDomains(installPath, rebornPort, corrosionPort, nginxSiteConfig, certbotBin)
@@ -246,12 +251,19 @@ func Install(nodeBin string, npmBin string, certbotBin string, nginxBin string, 
 	corrosionServiceNew := strings.Replace(corrosionService, "{{installPath}}", installPath, -1)
 	corrosionServiceNew = strings.Replace(corrosionServiceNew, "{{nodeBin}}", nodeBin, -1)
 
+	edufauServiceNew := strings.Replace(edufauService, "{{installPath}}", installPath, -1)
+	edufauServiceNew = strings.Replace(edufauServiceNew, "{{nodeBin}}", nodeBin, -1)
+	edufauServiceNew = strings.Replace(edufauServiceNew, "{{edufauPort}}", edufauPort, -1)
+
 	rebornServiceNew := strings.Replace(rebornService, "{{installPath}}", installPath, -1)
 
 	err = ioutil.WriteFile("/lib/systemd/system/corrosion.service", []byte(corrosionServiceNew), 0644)
 	HandleErr(err, "Unable to write systemd service. Are you running with permissions?")
 
 	err = ioutil.WriteFile("/lib/systemd/system/reborn.service", []byte(rebornServiceNew), 0644)
+	HandleErr(err, "Unable to write systemd service. Are you running with permissions?")
+
+	err = ioutil.WriteFile("/lib/systemd/system/edufau.service", []byte(edufauServiceNew), 0644)
 	HandleErr(err, "Unable to write systemd service. Are you running with permissions?")
 
 	log.Println("[*] Starting systemd services")
@@ -264,6 +276,9 @@ func Install(nodeBin string, npmBin string, certbotBin string, nginxBin string, 
 
 	err = enableStartService("corrosion")
 	HandleErr(err, "Unable to start corrosion service. This is an issue with the installer.")
+
+	err = enableStartService("edufau")
+	HandleErr(err, "Unable to start edufau service. This is an issue with the installer.")
 
 	log.Println("[*] Done installing!")
 }

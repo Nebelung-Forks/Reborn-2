@@ -52,7 +52,7 @@ const searchFunctions = {
         if (q.includes("http://") || q.includes("https://")) {
 			var redir = window.protocol + '://' + window.location.host + '/fetch/' + getUrl(q);
 		} else {
-			var redir = window.protocol + '://' + window.location.host + '/fetch/' + getUrl('https://gg.fm/search?q=' + q);
+			var redir = window.protocol + '://' + window.location.host + '/fetch/' + getUrl('https://duckduckgo.com/?q=' + q);
 		}
 
         window.open(redir);
