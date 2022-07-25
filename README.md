@@ -1,6 +1,6 @@
 # Reborn
 
-A frontend design for the [Corrosion web proxy](https://github.com/titaniumnetwork-dev/Corrosion)
+A frontend design for the [Corrosion web proxy](https://github.com/Titanium-Network/Corrosion)
 
 ## Dependencies
 
