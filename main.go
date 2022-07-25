@@ -36,7 +36,7 @@ func main() {
 	var pipBin = flag.String("pip", "/usr/bin/pip3", "Path to pip")
 
 	var installPath = flag.String("installPath", "/usr/local/reborn", "Reborn installation path")
-	var corrosionRepo = flag.String("corrosion", "https://github.com/titaniumnetwork-dev/Corrosion", "Corrosion repo")
+	var corrosionRepo = flag.String("corrosion", "https://github.com/Titanium-Network/Corrosion", "Corrosion repo")
 	var edufauRepo = flag.String("edufauRepo", "https://github.com/elitwo/edufau", "Edufau repo")
 	var nginxSiteConfig = flag.String("nginxSiteConfig", "/etc/nginx/sites-enabled/reborn-auto", "Nginx site config path")
 
